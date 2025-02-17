@@ -33,8 +33,8 @@ export function TokenBucket() {
         <TableHeader>
           <TableRow>
             <TableHead>Success</TableHead>
-            <TableHead>Maximum</TableHead>
-            <TableHead>Interval (ms)</TableHead>
+            <TableHead>Bucket Size</TableHead>
+            <TableHead>Refill Interval (ms)</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

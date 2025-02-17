@@ -1,5 +1,5 @@
 {
-  "name": "use-ratelimits",
+  "name": "react-ratelimit",
   "private": true,
   "scripts": {
     "build": "turbo build",
