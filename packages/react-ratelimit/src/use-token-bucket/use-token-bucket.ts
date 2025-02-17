@@ -70,7 +70,7 @@ export function useTokenBucket({
       setTokens(available - cost);
       return true;
     },
-    [interval, refilledAt, size, tokens]
+    [interval, refilledAt, size, tokens],
   );
 
   const reset = useCallback(() => {
