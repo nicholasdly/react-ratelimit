@@ -2,9 +2,9 @@
   "name": "react-ratelimit",
   "private": false,
   "version": "0.0.1",
-  "description": "A lightweight library of React hooks for rate limiting, written in TypeScript.",
+  "description": "A tiny library of React hooks for client-side rate limiting, written in TypeScript.",
   "author": "Nicholas Ly <nichdly@gmail.com>",
-  "homepage": "https://github.com/nicholasdly/react-ratelimit",
+  "homepage": "https://react-ratelimit.com/",
   "keywords": [
     "typescript",
     "react",
