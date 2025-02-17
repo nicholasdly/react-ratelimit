@@ -13,14 +13,6 @@ export type UseTokenBucketOptions = {
 
 export type UseTokenBucketHelpers = {
   /**
-   * The maximum number of tokens that can be stored by the token bucket.
-   */
-  size: number;
-  /**
-   * The number of milliseconds until the bucket regenerates one token.
-   */
-  interval: number;
-  /**
    * Attempt to consume a specified number of tokens from the bucket.
    * @param cost The number of tokens to consume.
    * @returns Boolean indicating whether the consumption was successful.
@@ -70,7 +62,7 @@ export function useTokenBucket({
       setTokens(available - cost);
       return true;
     },
-    [interval, refilledAt, size, tokens],
+    [interval, refilledAt, size, tokens]
   );
 
   const reset = useCallback(() => {
@@ -78,5 +70,5 @@ export function useTokenBucket({
     setRefilledAt(Date.now());
   }, [size]);
 
-  return { size, interval, consume, reset };
+  return { consume, reset };
 }

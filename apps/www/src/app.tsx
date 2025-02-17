@@ -1,3 +1,4 @@
+import { Throttler } from "./components/throttler";
 import { TokenBucket } from "./components/token-bucket";
 import { Button } from "./components/ui/button";
 import {
@@ -5,6 +6,24 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "./components/ui/tooltip";
+
+export function Definition({
+  definition,
+  children,
+}: Readonly<{ definition: string; children: string }>) {
+  return (
+    <Tooltip delayDuration={100}>
+      <TooltipTrigger>
+        <span className="underline underline-offset-4 decoration-dashed">
+          {children}
+        </span>
+      </TooltipTrigger>
+      <TooltipContent className="max-w-xs" side="bottom">
+        <p>{definition}</p>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
 
 export default function App() {
   return (
@@ -44,22 +63,13 @@ export default function App() {
       </header>
       <blockquote className="pl-4 py-1 border-l-2 font-medium">
         A tiny library of React hooks for client-side{" "}
-        <Tooltip delayDuration={100}>
-          <TooltipTrigger>
-            <span className="underline underline-offset-4 decoration-dashed">
-              rate limiting
-            </span>
-          </TooltipTrigger>
-          <TooltipContent className="max-w-xs" side="bottom">
-            <p>
-              A rate limiter is a technique that controls how often a user can
-              access a resource, such as an API endpoint, preventing abuse.
-            </p>
-          </TooltipContent>
-        </Tooltip>
+        <Definition definition="A rate limiter is a technique that controls how often a user can access a resource, such as a function or API endpoint, preventing abuse.">
+          rate limiting
+        </Definition>
         .
       </blockquote>
       <TokenBucket />
+      <Throttler />
     </main>
   );
 }

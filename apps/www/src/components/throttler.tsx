@@ -1,4 +1,4 @@
-import { useTokenBucket } from "react-ratelimit";
+import { useThrottler } from "react-ratelimit";
 import { Button } from "./ui/button";
 import {
   Table,
@@ -10,38 +10,34 @@ import {
 } from "./ui/table";
 import { useState } from "react";
 
-const TOKEN_BUCKET_SIZE = 10;
-const TOKEN_BUCKET_INTERVAL = 1000;
+const THROTTLER_DURATIONS = [1000, 2000, 3000, 4000, 5000, 10000];
 
-export function TokenBucket() {
+export function Throttler() {
   const [success, setSuccess] = useState<boolean>();
-  const { consume, reset } = useTokenBucket({
-    size: TOKEN_BUCKET_SIZE,
-    interval: TOKEN_BUCKET_INTERVAL,
+  const { duration, consume, reset } = useThrottler({
+    durations: THROTTLER_DURATIONS,
   });
 
   return (
     <div className="w-full space-y-4 rounded border p-4">
       <div className="space-y-2">
-        <h2 className="text-lg font-semibold">Token Bucket</h2>
+        <h2 className="text-lg font-semibold">Throttler</h2>
         <p className="text-sm font-medium">
-          Uses a bucket that holds tokens, which are required for requests, that
-          refill at a set rate allowing bursts up to the bucket&apos;s capacity.
+          Temporarily blocks or slows down requests that exceed a defined limit,
+          preventing them from overwhelming the server.
         </p>
       </div>
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead>Success</TableHead>
-            <TableHead>Bucket Size</TableHead>
-            <TableHead>Refill Interval (ms)</TableHead>
+            <TableHead>Timeout Duration (ms)</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           <TableRow className="font-mono font-semibold">
             <TableCell>{success != null ? success.toString() : "-"}</TableCell>
-            <TableCell>{TOKEN_BUCKET_SIZE}</TableCell>
-            <TableCell>{TOKEN_BUCKET_INTERVAL}</TableCell>
+            <TableCell>{duration}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -50,7 +46,7 @@ export function TokenBucket() {
           size="sm"
           variant="secondary"
           className="w-full font-semibold"
-          onClick={() => setSuccess(consume(1))}
+          onClick={() => setSuccess(consume())}
         >
           Check rate limit
         </Button>
