@@ -54,7 +54,7 @@ function Definition({
   return (
     <Tooltip delayDuration={100}>
       <TooltipTrigger>
-        <span className="underline underline-offset-6 decoration-dashed">
+        <span className="underline decoration-dashed underline-offset-6">
           {children}
         </span>
       </TooltipTrigger>
@@ -70,14 +70,14 @@ export default function App() {
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 p-6">
       <Header />
       <main className="space-y-6">
-        <blockquote className="pl-4 py-1 border-l-2 font-medium">
+        <blockquote className="border-l-2 py-1 pl-4 font-medium">
           A tiny TypeScript library of React hooks for client-side{" "}
           <Definition definition="A rate limiter is a technique that controls how often a user can access a resource, such as a function or API endpoint, preventing abuse.">
             rate limiting
           </Definition>
           , by Nicholas Ly.
         </blockquote>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <TokenBucket />
           <Throttler />
           <FixedWindow />

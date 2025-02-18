@@ -1,5 +1,7 @@
-import { describe, it, expect } from "vitest";
-import { renderHook, act } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
+import { act, renderHook } from "@testing-library/react";
+
 import { useSlidingLog } from "./use-sliding-log";
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -76,5 +78,17 @@ describe("useSlidingLog", () => {
     const allow = await act(() => result.current.consume());
 
     expect(allow).toBe(false);
+  });
+
+  it("should reset", async () => {
+    const { result } = renderHook(() =>
+      useSlidingLog({ tokens: 10, duration: 10_000 }),
+    );
+
+    act(() => result.current.consume(10));
+    act(() => result.current.reset());
+    const allow = await act(() => result.current.consume(5));
+
+    expect(allow).toBe(true);
   });
 });

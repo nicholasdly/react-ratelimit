@@ -1,5 +1,7 @@
-import { describe, it, expect } from "vitest";
-import { renderHook, act } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
+import { act, renderHook } from "@testing-library/react";
+
 import { useTokenBucket } from "./use-token-bucket";
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -110,5 +112,17 @@ describe("useTokenBucket", () => {
     const allow = await act(() => result.current.consume(1));
 
     expect(allow).toBe(false);
+  });
+
+  it("should reset", async () => {
+    const { result } = renderHook(() =>
+      useTokenBucket({ size: 10, interval: 30_000 }),
+    );
+
+    act(() => result.current.consume(10));
+    act(() => result.current.reset());
+    const allow = await act(() => result.current.consume(5));
+
+    expect(allow).toBe(true);
   });
 });

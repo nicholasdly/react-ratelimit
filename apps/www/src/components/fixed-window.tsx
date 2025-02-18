@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useFixedWindow } from "react-ratelimit";
+
 import { Button } from "./ui/button";
 import {
   Table,
@@ -8,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { useState } from "react";
 
 const FIXED_WINDOW_TOKENS = 10;
 const FIXED_WINDOW_DURATION = 10_000;
@@ -21,8 +22,8 @@ export function FixedWindow() {
   });
 
   return (
-    <div className="w-full flex flex-col gap-4 rounded border p-4">
-      <div className="space-y-2 flex-1">
+    <div className="flex w-full flex-col gap-4 rounded border p-4">
+      <div className="flex-1 space-y-2">
         <h2 className="text-lg font-semibold">Fixed Window</h2>
         <p className="text-sm">
           Maintains a count of requests within a fixed time window. Once the

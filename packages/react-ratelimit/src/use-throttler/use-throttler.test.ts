@@ -1,5 +1,7 @@
-import { describe, it, expect } from "vitest";
-import { renderHook, act } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
+import { act, renderHook } from "@testing-library/react";
+
 import { useThrottler } from "./use-throttler";
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -78,5 +80,18 @@ describe("useThrottler", () => {
 
     expect(allow).toBe(false);
     expect(result.current.duration).toBe(2_000);
+  });
+
+  it("should reset", async () => {
+    const { result } = renderHook(() =>
+      useThrottler({ durations: [1_000, 5_000, 30_000] }),
+    );
+
+    act(() => result.current.consume());
+    act(() => result.current.consume());
+    act(() => result.current.consume());
+    act(() => result.current.reset());
+
+    expect(result.current.duration).toBe(1_000);
   });
 });

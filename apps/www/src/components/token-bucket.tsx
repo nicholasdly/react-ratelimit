@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useTokenBucket } from "react-ratelimit";
+
 import { Button } from "./ui/button";
 import {
   Table,
@@ -8,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { useState } from "react";
 
 const TOKEN_BUCKET_SIZE = 10;
 const TOKEN_BUCKET_INTERVAL = 1000;
@@ -21,8 +22,8 @@ export function TokenBucket() {
   });
 
   return (
-    <div className="w-full flex flex-col gap-4 rounded border p-4">
-      <div className="space-y-2 flex-1">
+    <div className="flex w-full flex-col gap-4 rounded border p-4">
+      <div className="flex-1 space-y-2">
         <h2 className="text-lg font-semibold">Token Bucket</h2>
         <p className="text-sm">
           Uses a bucket that holds tokens, which are required for requests, that
