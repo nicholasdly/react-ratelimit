@@ -1,4 +1,4 @@
-import { useFixedWindow } from "react-ratelimit";
+import { useSlidingLog } from "react-ratelimit";
 import { Button } from "./ui/button";
 import {
   Table,
@@ -10,24 +10,24 @@ import {
 } from "./ui/table";
 import { useState } from "react";
 
-const FIXED_WINDOW_TOKENS = 10;
-const FIXED_WINDOW_DURATION = 10_000;
+const SLIDING_LOG_TOKENS = 10;
+const SLIDING_LOG_DURATION = 10_000;
 
-export function FixedWindow() {
+export function SlidingLog() {
   const [success, setSuccess] = useState<boolean>();
-  const { consume, reset } = useFixedWindow({
-    tokens: FIXED_WINDOW_TOKENS,
-    duration: FIXED_WINDOW_DURATION,
+  const { consume, reset } = useSlidingLog({
+    tokens: SLIDING_LOG_TOKENS,
+    duration: SLIDING_LOG_DURATION,
   });
 
   return (
     <div className="w-full flex flex-col gap-4 rounded border p-4">
       <div className="space-y-2 flex-1">
-        <h2 className="text-lg font-semibold">Fixed Window</h2>
+        <h2 className="text-lg font-semibold">Sliding Log</h2>
         <p className="text-sm">
-          Maintains a count of requests within a fixed time window. Once the
-          counter reaches the maximum allowed number, all further requests are
-          denied until the window resets.
+          Tracks requests within a moving timeframe, allowing new requests only
+          if the total requests within that log (including the new one) are
+          within the limit.
         </p>
       </div>
       <Table>
@@ -35,14 +35,14 @@ export function FixedWindow() {
           <TableRow>
             <TableHead>Success</TableHead>
             <TableHead>Maximum</TableHead>
-            <TableHead>Window Duration (ms)</TableHead>
+            <TableHead>Log Duration (ms)</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           <TableRow className="font-mono font-semibold">
             <TableCell>{success != null ? success.toString() : "-"}</TableCell>
-            <TableCell>{FIXED_WINDOW_TOKENS}</TableCell>
-            <TableCell>{FIXED_WINDOW_DURATION}</TableCell>
+            <TableCell>{SLIDING_LOG_TOKENS}</TableCell>
+            <TableCell>{SLIDING_LOG_DURATION}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

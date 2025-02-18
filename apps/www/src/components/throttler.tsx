@@ -19,8 +19,8 @@ export function Throttler() {
   });
 
   return (
-    <div className="w-full space-y-4 rounded border p-4">
-      <div className="space-y-2">
+    <div className="w-full flex flex-col gap-4 rounded border p-4">
+      <div className="space-y-2 flex-1">
         <h2 className="text-lg font-semibold">Throttler</h2>
         <p className="text-sm">
           Temporarily blocks or slows down requests that exceed a defined limit,
