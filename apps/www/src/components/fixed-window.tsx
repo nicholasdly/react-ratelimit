@@ -1,4 +1,4 @@
-import { useThrottler } from "react-ratelimit";
+import { useFixedWindow } from "react-ratelimit";
 import { Button } from "./ui/button";
 import {
   Table,
@@ -10,34 +10,39 @@ import {
 } from "./ui/table";
 import { useState } from "react";
 
-const THROTTLER_DURATIONS = [1000, 2000, 3000, 4000, 5000, 10000];
+const FIXED_WINDOW_TOKENS = 10;
+const FIXED_WINDOW_DURATION = 10_000;
 
-export function Throttler() {
+export function FixedWindow() {
   const [success, setSuccess] = useState<boolean>();
-  const { duration, consume, reset } = useThrottler({
-    durations: THROTTLER_DURATIONS,
+  const { consume, reset } = useFixedWindow({
+    tokens: FIXED_WINDOW_TOKENS,
+    duration: FIXED_WINDOW_DURATION,
   });
 
   return (
     <div className="w-full space-y-4 rounded border p-4">
       <div className="space-y-2">
-        <h2 className="text-lg font-semibold">Throttler</h2>
+        <h2 className="text-lg font-semibold">Fixed Window</h2>
         <p className="text-sm">
-          Temporarily blocks or slows down requests that exceed a defined limit,
-          preventing them from overwhelming the server.
+          Maintains a count of requests within a fixed time window. Once the
+          counter reaches the maximum allowed number, all further requests are
+          denied until the window resets.
         </p>
       </div>
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead>Success</TableHead>
-            <TableHead>Timeout Duration (ms)</TableHead>
+            <TableHead>Maximum</TableHead>
+            <TableHead>Window Duration (ms)</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           <TableRow className="font-mono font-semibold">
             <TableCell>{success != null ? success.toString() : "-"}</TableCell>
-            <TableCell>{duration}</TableCell>
+            <TableCell>{FIXED_WINDOW_TOKENS}</TableCell>
+            <TableCell>{FIXED_WINDOW_DURATION}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

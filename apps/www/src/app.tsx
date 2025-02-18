@@ -1,3 +1,4 @@
+import { FixedWindow } from "./components/fixed-window";
 import { Throttler } from "./components/throttler";
 import { TokenBucket } from "./components/token-bucket";
 import { Button } from "./components/ui/button";
@@ -27,7 +28,7 @@ export function Definition({
 
 export default function App() {
   return (
-    <main className="mx-auto flex w-full max-w-lg flex-col gap-6 p-6">
+    <main className="mx-auto flex w-full max-w-4xl flex-col gap-6 p-6">
       <header className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold underline-offset-4">
           react-ratelimit
@@ -68,8 +69,11 @@ export default function App() {
         </Definition>
         .
       </blockquote>
-      <TokenBucket />
-      <Throttler />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <TokenBucket />
+        <Throttler />
+        <FixedWindow />
+      </div>
     </main>
   );
 }
