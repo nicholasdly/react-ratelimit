@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useThrottler } from "react-ratelimit";
+
 import { Button } from "./ui/button";
 import {
   Table,
@@ -8,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { useState } from "react";
 
 const THROTTLER_DURATIONS = [1000, 2000, 3000, 4000, 5000, 10000];
 
@@ -19,8 +20,8 @@ export function Throttler() {
   });
 
   return (
-    <div className="w-full flex flex-col gap-4 rounded border p-4">
-      <div className="space-y-2 flex-1">
+    <div className="flex w-full flex-col gap-4 rounded border p-4">
+      <div className="flex-1 space-y-2">
         <h2 className="text-lg font-semibold">Throttler</h2>
         <p className="text-sm">
           Temporarily blocks or slows down requests that exceed a defined limit,
