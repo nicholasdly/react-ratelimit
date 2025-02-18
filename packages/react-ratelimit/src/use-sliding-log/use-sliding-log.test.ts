@@ -79,4 +79,16 @@ describe("useSlidingLog", () => {
 
     expect(allow).toBe(false);
   });
+
+  it("should reset", async () => {
+    const { result } = renderHook(() =>
+      useSlidingLog({ tokens: 10, duration: 10_000 }),
+    );
+
+    act(() => result.current.consume(10));
+    act(() => result.current.reset());
+    const allow = await act(() => result.current.consume(5));
+
+    expect(allow).toBe(true);
+  });
 });

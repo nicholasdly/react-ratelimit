@@ -81,4 +81,17 @@ describe("useThrottler", () => {
     expect(allow).toBe(false);
     expect(result.current.duration).toBe(2_000);
   });
+
+  it("should reset", async () => {
+    const { result } = renderHook(() =>
+      useThrottler({ durations: [1_000, 5_000, 30_000] }),
+    );
+
+    act(() => result.current.consume());
+    act(() => result.current.consume());
+    act(() => result.current.consume());
+    act(() => result.current.reset());
+
+    expect(result.current.duration).toBe(1_000);
+  });
 });
