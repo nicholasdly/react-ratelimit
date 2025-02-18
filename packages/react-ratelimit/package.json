@@ -1,0 +1,59 @@
+{
+  "name": "react-ratelimit",
+  "private": false,
+  "version": "1.0.0",
+  "description": "A tiny library of React hooks for client-side rate limiting, written in TypeScript.",
+  "author": "Nicholas Ly <nichdly@gmail.com>",
+  "homepage": "https://react-ratelimit.com/",
+  "keywords": [
+    "typescript",
+    "react",
+    "hooks",
+    "ratelimit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicholasdly/react-ratelimit"
+  },
+  "bugs": {
+    "url": "https://github.com/nicholasdly/react-ratelimit/issues"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "eslint './src/**/*.{ts,tsx}' && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9",
+    "@testing-library/react": "^16.2.0",
+    "@types/react": "^19",
+    "eslint": "^9",
+    "eslint-plugin-react-hooks": "^5",
+    "jsdom": "^26.0.0",
+    "react": "^19",
+    "tsup": "^8",
+    "typescript": "latest",
+    "typescript-eslint": "^8",
+    "vitest": "^3.0.5"
+  },
+  "peerDependencies": {
+    "react": "^16  || ^17 || ^18 || ^19"
+  }
+}

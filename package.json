@@ -1,12 +1,16 @@
 {
-  "name": "use-ratelimits",
+  "name": "react-ratelimit",
   "private": true,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo check-types"
+    "format": "prettier --write .",
+    "check-types": "turbo check-types",
+    "changeset": "npx @changesets/cli",
+    "changeset:version": "npx @changesets/cli version",
+    "changeset:publish": "npx @changesets/cli publish",
+    "publish-packages": "turbo run build lint test && changeset:version && changeset:publish"
   },
   "devDependencies": {
     "prettier": "^3.5.0",
