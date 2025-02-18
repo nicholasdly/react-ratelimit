@@ -21,8 +21,8 @@ export function TokenBucket() {
   });
 
   return (
-    <div className="w-full space-y-4 rounded border p-4">
-      <div className="space-y-2">
+    <div className="w-full flex flex-col gap-4 rounded border p-4">
+      <div className="space-y-2 flex-1">
         <h2 className="text-lg font-semibold">Token Bucket</h2>
         <p className="text-sm">
           Uses a bucket that holds tokens, which are required for requests, that
