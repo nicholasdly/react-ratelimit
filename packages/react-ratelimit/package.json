@@ -43,15 +43,15 @@
   "devDependencies": {
     "@eslint/js": "^9",
     "@testing-library/react": "^16.2.0",
-    "@types/react": "^19",
+    "@types/react": "^19.0.10",
     "eslint": "^9",
     "eslint-plugin-react-hooks": "^5",
     "jsdom": "^26.0.0",
     "react": "^19",
     "tsup": "^8",
     "typescript": "latest",
-    "typescript-eslint": "^8",
-    "vitest": "^3.0.5"
+    "typescript-eslint": "^8.24.1",
+    "vitest": "^3.0.6"
   },
   "peerDependencies": {
     "react": "^16  || ^17 || ^18 || ^19"
