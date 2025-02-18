@@ -64,7 +64,7 @@ export function useFixedWindow({
 
       return false;
     },
-    [duration, tokens]
+    [duration, tokens],
   );
 
   const reset = useCallback(() => {

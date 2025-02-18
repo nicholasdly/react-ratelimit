@@ -7,7 +7,7 @@ const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 describe("useFixedWindow", () => {
   it("should use correct types", () => {
     const { result } = renderHook(() =>
-      useFixedWindow({ tokens: 10, duration: 10_000 })
+      useFixedWindow({ tokens: 10, duration: 10_000 }),
     );
 
     expect(typeof result.current.consume).toBe("function");
@@ -16,7 +16,7 @@ describe("useFixedWindow", () => {
 
   it("should allow request (1)", async () => {
     const { result } = renderHook(() =>
-      useFixedWindow({ tokens: 10, duration: 10_000 })
+      useFixedWindow({ tokens: 10, duration: 10_000 }),
     );
 
     const allow = await act(() => result.current.consume());
@@ -26,7 +26,7 @@ describe("useFixedWindow", () => {
 
   it("should allow request (2)", async () => {
     const { result } = renderHook(() =>
-      useFixedWindow({ tokens: 10, duration: 10_000 })
+      useFixedWindow({ tokens: 10, duration: 10_000 }),
     );
 
     const allow = await act(() => result.current.consume(10));
@@ -36,7 +36,7 @@ describe("useFixedWindow", () => {
 
   it("should allow request (3)", async () => {
     const { result } = renderHook(() =>
-      useFixedWindow({ tokens: 10, duration: 10_000 })
+      useFixedWindow({ tokens: 10, duration: 10_000 }),
     );
 
     act(() => result.current.consume(2));
@@ -47,7 +47,7 @@ describe("useFixedWindow", () => {
 
   it("should allow request (4)", async () => {
     const { result } = renderHook(() =>
-      useFixedWindow({ tokens: 5, duration: 1_000 })
+      useFixedWindow({ tokens: 5, duration: 1_000 }),
     );
 
     act(() => result.current.consume(5));
@@ -59,7 +59,7 @@ describe("useFixedWindow", () => {
 
   it("should deny request (1)", async () => {
     const { result } = renderHook(() =>
-      useFixedWindow({ tokens: 10, duration: 10_000 })
+      useFixedWindow({ tokens: 10, duration: 10_000 }),
     );
 
     const allow = await act(() => result.current.consume(11));
@@ -69,7 +69,7 @@ describe("useFixedWindow", () => {
 
   it("should deny request (2)", async () => {
     const { result } = renderHook(() =>
-      useFixedWindow({ tokens: 10, duration: 10_000 })
+      useFixedWindow({ tokens: 10, duration: 10_000 }),
     );
 
     act(() => result.current.consume(10));
