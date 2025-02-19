@@ -1,5 +1,11 @@
 # react-ratelimit
 
+## 1.1.1
+
+### Patch Changes
+
+- a10676d: Updated documentation and package details.
+
 ## 1.1.0
 
 ### Minor Changes
