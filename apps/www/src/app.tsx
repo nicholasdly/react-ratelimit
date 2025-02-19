@@ -71,7 +71,7 @@ export default function App() {
       <Header />
       <main className="space-y-6">
         <blockquote className="border-l-2 py-1 pl-4 font-medium">
-          A tiny TypeScript library of React hooks for client-side{" "}
+          A ready-to-use TypeScript library of React hooks for client-side{" "}
           <Definition definition="A rate limiter is a technique that controls how often a user can access a resource, such as a function or API endpoint, preventing abuse.">
             rate limiting
           </Definition>
