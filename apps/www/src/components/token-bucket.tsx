@@ -36,7 +36,7 @@ export function TokenBucket() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Success</TableHead>
+            <TableHead>Status</TableHead>
             <TableHead>Bucket Size</TableHead>
             <TableHead>Refill Interval (ms)</TableHead>
           </TableRow>
