@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useTokenBucket } from "react-ratelimit";
 
+import { cn } from "@/lib/utils";
+
 import { Button } from "./ui/button";
 import {
   Table,
@@ -16,6 +18,7 @@ const TOKEN_BUCKET_INTERVAL = 1000;
 
 export function TokenBucket() {
   const [success, setSuccess] = useState<boolean>();
+  const [count, setCount] = useState(1);
   const { consume, reset } = useTokenBucket({
     size: TOKEN_BUCKET_SIZE,
     interval: TOKEN_BUCKET_INTERVAL,
@@ -40,7 +43,20 @@ export function TokenBucket() {
         </TableHeader>
         <TableBody>
           <TableRow className="font-mono font-semibold">
-            <TableCell>{success != null ? success.toString() : "-"}</TableCell>
+            <TableCell
+              className={cn(
+                "inline-flex min-w-26 items-baseline gap-1",
+                success === true && "text-green-400",
+                success === false && "text-red-400",
+              )}
+            >
+              <span>
+                {success != null ? (success ? "allowed" : "denied") : "-"}
+              </span>
+              {count > 1 && (
+                <span className="font-sans text-xs">x {count}</span>
+              )}
+            </TableCell>
             <TableCell>{TOKEN_BUCKET_SIZE}</TableCell>
             <TableCell>{TOKEN_BUCKET_INTERVAL}</TableCell>
           </TableRow>
@@ -50,18 +66,27 @@ export function TokenBucket() {
         <Button
           size="sm"
           variant="secondary"
-          className="w-full font-semibold"
-          onClick={() => setSuccess(consume(1))}
+          className="w-full font-semibold transition-transform active:scale-95"
+          onClick={() => {
+            const result = consume(1);
+            if (success === result) {
+              setCount((previous) => previous + 1);
+            } else {
+              setCount(1);
+            }
+            setSuccess(result);
+          }}
         >
           Check rate limit
         </Button>
         <Button
           size="sm"
           variant="outline"
-          className="w-full font-semibold"
+          className="w-full font-semibold transition-transform active:scale-95"
           onClick={() => {
             reset();
             setSuccess(undefined);
+            setCount(1);
           }}
         >
           Reset rate limit
