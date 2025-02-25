@@ -37,7 +37,7 @@ export function SlidingLog() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Success</TableHead>
+            <TableHead>Status</TableHead>
             <TableHead>Maximum</TableHead>
             <TableHead>Log Duration (ms)</TableHead>
           </TableRow>

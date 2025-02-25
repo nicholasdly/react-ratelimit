@@ -34,7 +34,7 @@ export function Throttler() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Success</TableHead>
+            <TableHead>Status</TableHead>
             <TableHead>Timeout Duration (ms)</TableHead>
           </TableRow>
         </TableHeader>
